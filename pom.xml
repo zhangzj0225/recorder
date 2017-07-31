@@ -75,9 +75,16 @@
             <artifactId>selenium-java</artifactId>
             <version>${selenium-java.version}</version>
         </dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-tx -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>4.3.9.RELEASE</version>
+		</dependency>
 
 
-    </dependencies>
+
+	</dependencies>
 
 	<build>
 		<plugins>
