@@ -18,45 +18,42 @@ import java.util.concurrent.TimeUnit;
 
 public class BaseSteps {
 
+    private WebDriver driver;
 
-    public class BaiduSearchStepfs {
-        private WebDriver driver;
+    @Given("^Go to baidu home$")
+    public void go_to_baidu_home() throws Exception {
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.get("http://www.baidu.com/");
+    }
 
-        @Given("^Go to baidu home$")
-        public void go_to_baidu_home() throws Exception {
-            driver = new ChromeDriver();
-            driver.manage().window().maximize();
-            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-            driver.get("http://www.baidu.com/");
-        }
+    @When("^I find baidu logo")
+    public WebElement i_find_baidu_logo() {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebElement element = wait.until(ExpectedConditions.visibilityOf
+                (driver.findElement(By.xpath("//div[@id='lg']/img"))));
 
-        @When("^I find baidu logo")
-        public WebElement i_find_baidu_logo() {
-            WebDriverWait wait = new WebDriverWait(driver,10);
-            WebElement element = wait.until(ExpectedConditions.visibilityOf
-                    (driver.findElement(By.xpath("//div[@id='lg']/img"))));
-
-            return element;
-        }
+        return element;
+    }
 
 
-        @And("^Type the search text \"([^\"]*)\"$")
-        public void type_the_search_text(String searchText) throws Throwable {
-            driver.findElement(By.id("kw")).clear();
-            driver.findElement(By.id("kw")).sendKeys(searchText);
-        }
+    @And("^Type the search text \"([^\"]*)\"$")
+    public void type_the_search_text(String searchText) throws Throwable {
+        driver.findElement(By.id("kw")).clear();
+        driver.findElement(By.id("kw")).sendKeys(searchText);
+    }
 
-        @And("^Click the submit$")
-        public void click_the_submit() {
-            driver.findElement(By.id("su")).click();
-        }
+    @And("^Click the submit$")
+    public void click_the_submit() {
+        driver.findElement(By.id("su")).click();
+    }
 
-        @Then("^Wait the query result")
-        public void wait_the_query_result() throws InterruptedException {
-            Thread.sleep(10000);
-            Assert.assertEquals("selenium_百度搜索", driver.getTitle());
-            driver.close();
-            driver.quit();
-        }
+    @Then("^Wait the query result")
+    public void wait_the_query_result() throws InterruptedException {
+        Thread.sleep(10000);
+        Assert.assertEquals("selenium_百度搜索", driver.getTitle());
+        driver.close();
+        driver.quit();
     }
 }
