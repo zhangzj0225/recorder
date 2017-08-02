@@ -4,15 +4,16 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import cucumber.runtime.java.StepDefAnnotation;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 
@@ -20,9 +21,18 @@ public class BaseSteps {
 
     private WebDriver driver;
 
+    public BaseSteps() {
+//        Properties properties = System.getProperties();
+//        System.out.println(properties.getProperty("os.name"));
+//        System.setProperty(
+//                "webdriver.chrome.driver",
+//                "src/main/resources/web-driver/ChromePortable.exe");
+        driver = new FirefoxDriver();
+    }
+
+
     @Given("^Go to baidu home$")
     public void go_to_baidu_home() throws Exception {
-        driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.get("http://www.baidu.com/");
