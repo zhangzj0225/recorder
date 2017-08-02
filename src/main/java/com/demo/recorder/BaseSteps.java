@@ -24,10 +24,10 @@ public class BaseSteps {
     public BaseSteps() {
 //        Properties properties = System.getProperties();
 //        System.out.println(properties.getProperty("os.name"));
-//        System.setProperty(
-//                "webdriver.chrome.driver",
-//                "src/main/resources/web-driver/ChromePortable.exe");
-        driver = new FirefoxDriver();
+        System.setProperty(
+                "webdriver.chrome.driver",
+                "src/main/resources/web-driver/chromedriver");
+        driver = new ChromeDriver();
     }
 
 
