@@ -1,10 +1,11 @@
-@runThis
-Feature: 百度搜索
+# language: zh-CN
+
+功能: 登录行权系统
   打开百度进行搜索
 
-  Scenario:
-    Given Go to baidu home
-    When  I find baidu logo
-    And   Type the search text "这是一段测试代码"
-    And   Click the submit
-    Then  Wait the query result
+  场景:
+    假如  我有用户名 "abc" 和 密码 "123"
+    当 访问网址 "www.baidu.com"
+    并且  输入用户名和密码
+    并且  点击登录按钮
+    那么  访问正常
